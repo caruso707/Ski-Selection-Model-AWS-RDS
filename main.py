@@ -1,4 +1,5 @@
 from ski_selector import SkiSelectorModel
+#git test
 
 model_active = True
 model = SkiSelectorModel(hostname="ski-database-1.cud1itjjaouu.us-east-1.rds.amazonaws.com",
