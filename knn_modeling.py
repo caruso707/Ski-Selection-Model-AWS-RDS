@@ -34,7 +34,6 @@ class KNNRegressionModel:
         ind_var = self.dataset.drop(dependent_variable, axis=axis)
         ind_var = ind_var.values
         distances = np.linalg.norm(ind_var - new_data_point, axis=axis)
-        # print(distances)
         nearest_neighbor_ids = distances.argsort()[:k]
         return nearest_neighbor_ids
 

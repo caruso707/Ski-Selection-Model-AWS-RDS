@@ -145,11 +145,13 @@ class SkiSelectorModel:
             ids = []
             for i in range(len(prediction)):
                 ids.append(self.knn_model.dataset["ID"][prediction[i]])
-            result = self.ski_data.query(f"ID in {ids}")
+            result = self.ski_data.query(f"ID == {ids[0]}")
             result.reset_index(drop=True, inplace=True)
             self.output = f"{result['make'][0]} {result['model'][0]}"
             for i in range(1, len(prediction)):
-                string = f"{result['make'][i]} {result['model'][i]}"
+                result = self.ski_data.query(f"ID == {ids[i]}")
+                result.reset_index(drop=True, inplace=True)
+                string = f"{result['make'][0]} {result['model'][0]}"
                 self.output = self.output + ", " + string
             print(self.output + " | " + self.input_parameters)
         return self.output, self.input_parameters, prediction
